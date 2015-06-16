@@ -1,7 +1,7 @@
 package com.tw.model;
 
-import com.tw.common.Constants;
 import com.tw.Exception.AccountException;
+import com.tw.common.Constants;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
