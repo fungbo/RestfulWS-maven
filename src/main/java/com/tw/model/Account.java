@@ -1,8 +1,24 @@
 package com.tw.model;
 
+import java.util.UUID;
+
 public class Account {
+    private UUID uuid = UUID.randomUUID();
     private String msisdn;
     private double balance;
+
+    public Account(String msisdn, double balance) {
+        this.msisdn = msisdn;
+        this.balance = balance;
+    }
+
+    public Account() {
+
+    }
+
+    public String getUuidString() {
+        return uuid.toString();
+    }
 
     public String getMsisdn() {
         return msisdn;

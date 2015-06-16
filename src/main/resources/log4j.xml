@@ -6,18 +6,27 @@
 
     <appender name="stdout" class="org.apache.log4j.ConsoleAppender">
         <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="%d [%t|%C] %-5p %m%n"/>
+            <param name="ConversionPattern" value="%d [%-5p] %m%n"/>
         </layout>
     </appender>
 
     <appender name="file" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File"   value="logstore/everything.log" />
+        <param name="File"   value="logstore/account/account.log" />
         <param name="Append" value="true" />
         <param name="DatePattern" value="'.'yyyy-MM-dd" />
         <layout class="org.apache.log4j.PatternLayout">
-            <param name="ConversionPattern" value="%d [%t|%C] %-5p %m%n"/>
+            <param name="ConversionPattern" value="%d [%-5p] %m%n"/>
         </layout>
     </appender>
+    
+    <appender name="deny" class="org.apache.log4j.ConsoleAppender">
+        <filter class="org.apache.log4j.varia.DenyAllFilter"/>
+    </appender>
+    
+    <category name="org.springframework" additivity="false">
+        <priority value="trace"/>
+        <appender-ref ref="deny"/>
+    </category>
 
     <root>
         <priority value="debug"/>

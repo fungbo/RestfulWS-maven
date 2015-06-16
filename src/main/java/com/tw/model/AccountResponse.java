@@ -13,16 +13,17 @@ public class AccountResponse {
     private String message;
 
     public static AccountResponse getSuccessfulInstance() {
-        return new AccountResponse(Status.SUCCESS, 0);
+        return new AccountResponse(Status.SUCCESS, 0, null);
     }
 
     public static AccountResponse getFailInstance(int code, String message) {
-        return new AccountResponse(Status.FAILURE, code);
+        return new AccountResponse(Status.FAILURE, code, message);
     }
 
-    private AccountResponse(Status status, int code) {
+    private AccountResponse(Status status, int code, String message) {
         this.status = status;
         this.code = code;
+        this.message = message;
     }
 
     public Status getStatus() {

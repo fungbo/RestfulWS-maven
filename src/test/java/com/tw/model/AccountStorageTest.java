@@ -15,12 +15,8 @@ public class AccountStorageTest {
     @Before
     public void setUp() {
         storage = new AccountStorage();
-        mike = new Account();
-        mike.setMsisdn("62001");
-        mike.setBalance(68.4);
-        jack = new Account();
-        jack.setMsisdn(("62002"));
-        jack.setBalance(0.07);
+        mike = new Account("62001", 68.4);
+        jack = new Account("62002", 0.07);
     }
 
     @Test
@@ -29,11 +25,7 @@ public class AccountStorageTest {
         storage.add(jack);
         Account account = storage.get(jack.getMsisdn());
 
-        Account expectedAccount = new Account();
-        expectedAccount.setMsisdn("62002");
-        expectedAccount.setBalance(0.07);
-
-        assertThat(account, isAccount(expectedAccount));
+        assertThat(account, isAccount(new Account("62002", 0.07)));
     }
 
     @Test(expected = AccountException.class)

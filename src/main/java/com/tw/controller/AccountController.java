@@ -1,8 +1,8 @@
 package com.tw.controller;
 
 import com.tw.Exception.AccountException;
-import com.tw.common.AccountMarshaller;
 import com.tw.common.Constants;
+import com.tw.common.JsonMarshaller;
 import com.tw.model.Account;
 import com.tw.model.AccountResponse;
 import com.tw.model.AccountStorage;
@@ -21,15 +21,27 @@ public class AccountController {
 
     @RequestMapping(value = "/add", method = RequestMethod.PUT)
     public AccountResponse addAccount(@RequestBody Account account) throws AccountException {
-        LOGGER.debug("Add account:\n" + AccountMarshaller.marshal(account));
+        LOGGER.debug("[" + account.getUuidString() + "] Add account:\n" + JsonMarshaller.marshal(account));
         storage.add(account);
-        return AccountResponse.getSuccessfulInstance();
+        AccountResponse response = AccountResponse.getSuccessfulInstance();
+        LOGGER.debug("[" + account.getUuidString() + "] Response:\n" + JsonMarshaller.marshal(response));
+        return response;
     }
 
     @ExceptionHandler(value = HttpMessageConversionException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public AccountResponse handleUnmarshalException(HttpMessageConversionException e) {
-        return AccountResponse.getFailInstance(Constants.WRONG_FORMAT, e.getCause().getMessage());
+        AccountResponse response = AccountResponse.getFailInstance(Constants.WRONG_FORMAT, e.getCause().getMessage());
+        LOGGER.error("Response:\n" + JsonMarshaller.marshal(response));
+        return response;
+    }
+
+    @ExceptionHandler(value = AccountException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public AccountResponse handleAccountException(AccountException e) {
+        AccountResponse response = AccountResponse.getFailInstance(e.getCode(), e.getMessage());
+        LOGGER.error("Response:\n" + JsonMarshaller.marshal(response));
+        return response;
     }
 }
 
