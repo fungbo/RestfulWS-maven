@@ -10,7 +10,7 @@ public class Configuration {
 
     static {
         try {
-            properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("account.properties"));
+            properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream(Constants.ACCOUNT_PROPERTIES_FILE));
         } catch (Exception e) {
             LOGGER.error("Load account.properties error");
         }

@@ -14,11 +14,11 @@ import java.net.URL;
 public class Log4jInitialiser implements ServletContextListener {
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         try {
-            URL log4jUrl = Thread.currentThread().getContextClassLoader().getResource("log4jconfig/log.xml");
+            URL log4jUrl = Thread.currentThread().getContextClassLoader().getResource(Constants.LOG4J_CONFIG_XML_FILE);
             DOMConfigurator.configure(log4jUrl);
         } catch (Exception e1) {
             try {
-                URL log4jProperties = Thread.currentThread().getContextClassLoader().getResource("log4jconfig/log.properties");
+                URL log4jProperties = Thread.currentThread().getContextClassLoader().getResource(Constants.LOG4J_CONFIG_PROPERTIES_FILE);
                 PropertyConfigurator.configure(log4jProperties);
             } catch (Exception e2) {
                 System.out.println("Load log4j config file error");

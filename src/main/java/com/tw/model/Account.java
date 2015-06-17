@@ -3,6 +3,9 @@ package com.tw.model;
 import java.util.UUID;
 
 public class Account {
+    public enum Type {
+        PREPAID, POSTPAID
+    }
     private UUID uuid = UUID.randomUUID();
     private String msisdn;
     private double balance;
