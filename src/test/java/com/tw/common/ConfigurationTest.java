@@ -11,7 +11,7 @@ public class ConfigurationTest {
     @Test
     public void should_get_property() {
         Boolean mode = Boolean.valueOf(Configuration.getProperty("test.mode"));
-        assertThat(mode, is(true));
+        assertThat(mode, is(false));
 
         String nullProperty = Configuration.getProperty("NotExisting");
         assertThat(nullProperty, nullValue());

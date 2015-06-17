@@ -17,10 +17,6 @@ public class Configuration {
     }
 
     public static String getProperty(String key) {
-        try {
-            return properties.getProperty(key);
-        } catch (Exception e) {
-            return null;
-        }
+        return properties.getProperty(key);
     }
 }
