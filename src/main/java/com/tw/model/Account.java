@@ -1,12 +1,37 @@
 package com.tw.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.UUID;
 
 public class Account {
     public enum Type {
-        PREPAID, POSTPAID
+        PRPD("PREPAID"), POPD("POSTPAID");
+
+        private String name;
+
+        Type(String name) {
+            this.name = name;
+        }
+
+        @JsonCreator
+        public static Type fromName(String name) {
+            for (Type type : Type.values()) {
+                if (type.name.equals(name)) {
+                    return type;
+                }
+            }
+            return null;
+        }
+
+        public String getName() {
+            return name;
+        }
     }
+
     private UUID uuid = UUID.randomUUID();
+    private Type type;
     private String msisdn;
     private double balance;
 
@@ -19,8 +44,17 @@ public class Account {
 
     }
 
+    @JsonIgnore
     public String getUuidString() {
         return uuid.toString();
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
     }
 
     public String getMsisdn() {
