@@ -28,11 +28,9 @@ public class Account {
         public String getName() {
             return name;
         }
-
     }
 
     private UUID uuid = UUID.randomUUID();
-
     private Type type;
     private String msisdn;
     private Double balance;
@@ -44,7 +42,6 @@ public class Account {
     }
 
     public Account() {
-
     }
 
     public Type getType() {
