@@ -44,6 +44,11 @@ public class Account {
     public Account() {
     }
 
+    @JsonIgnore
+    public String getUuidString() {
+        return uuid.toString();
+    }
+
     public Type getType() {
         return type;
     }
@@ -51,12 +56,6 @@ public class Account {
     public void setType(Type type) {
         this.type = type;
     }
-
-    @JsonIgnore
-    public String getUuidString() {
-        return uuid.toString();
-    }
-
 
     public String getMsisdn() {
         return msisdn;

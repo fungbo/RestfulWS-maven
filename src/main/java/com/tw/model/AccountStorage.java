@@ -45,7 +45,7 @@ public class AccountStorage {
             for (Field field : fields) {
                 if (field.getType() != UUID.class) {
                     field.setAccessible(true);
-                    field.set(oldObj, getUpdatedField(field.get(oldObj), field.get(newObj)));
+                    field.set(oldObj, getUpdatedValue(field.get(oldObj), field.get(newObj)));
                 }
             }
         } catch (IllegalAccessException e) {
@@ -54,7 +54,7 @@ public class AccountStorage {
         return oldObj;
     }
 
-    private <T> T getUpdatedField(T oldItem, T newItem) {
+    private <T> T getUpdatedValue(T oldItem, T newItem) {
         return newItem != null ? newItem : oldItem;
     }
 }
