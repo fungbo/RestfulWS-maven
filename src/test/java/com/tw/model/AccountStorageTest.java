@@ -6,9 +6,11 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import static com.tw.common.Matchers.isAccount;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 public class AccountStorageTest {
@@ -56,6 +58,16 @@ public class AccountStorageTest {
         storage.update(account);
 
         assertThat(storage.get(mike.getMsisdn()), isAccount(new Account(Account.Type.PRPD, "62001", 8.0)));
+    }
+
+    @Test
+    public void should_remove_all_accounts() throws AccountException {
+        storage.add(mike);
+        storage.add(jack);
+        storage.removeAll();
+        Collection<Account> allAccounts = storage.getAll();
+
+        assertThat(allAccounts.size(), is(0));
     }
 
     @Test(expected = AccountException.class)

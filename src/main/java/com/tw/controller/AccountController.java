@@ -36,8 +36,8 @@ public class AccountController {
         return storage.get(msisdn);
     }
 
-    @RequestMapping(value = "get-all", method = RequestMethod.GET)
-    public Collection<Account> getAllAccount() {
+    @RequestMapping(value = "all", method = RequestMethod.GET)
+    public Collection<Account> getAllAccounts() {
         LOGGER.debug("Get all accounts");
         return storage.getAll();
     }
@@ -49,6 +49,13 @@ public class AccountController {
         AccountResponse response = AccountResponse.getSuccessfulInstance();
         LOGGER.debug("Response:\n" + JsonMarshaller.marshal(response));
         return response;
+    }
+
+    @RequestMapping(value = "all", method = RequestMethod.DELETE)
+    public AccountResponse removeAll() {
+        LOGGER.debug("Delete all accounts.");
+        storage.removeAll();
+        return AccountResponse.getSuccessfulInstance();
     }
 
     @ExceptionHandler(value = HttpMessageConversionException.class)

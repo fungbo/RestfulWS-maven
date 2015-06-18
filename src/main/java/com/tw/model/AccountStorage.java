@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.UUID;
 
 @Service
@@ -33,6 +34,15 @@ public class AccountStorage {
 
     public Account update(Account newAccount) throws AccountException {
         return updateObject(get(newAccount.getMsisdn()), newAccount);
+    }
+
+    public void removeAll() {
+        Collection<Account> allAccounts = getAll();
+        Iterator<Account> iterator = allAccounts.iterator();
+        while (iterator.hasNext()) {
+            iterator.next();
+            iterator.remove();
+        }
     }
 
     private boolean isAccountExisting(String msisdn) {

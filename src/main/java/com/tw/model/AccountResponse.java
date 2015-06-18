@@ -37,4 +37,13 @@ public class AccountResponse {
     public String getMessage() {
         return message;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("Response:{\n");
+        sb.append("status").append(status).append(",");
+        sb.append("code").append(code).append(",");
+        sb.append("message").append(message).append("}");
+        return sb.toString();
+    }
 }
