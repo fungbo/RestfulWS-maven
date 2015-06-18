@@ -42,6 +42,14 @@ public class AccountController {
         return storage.getAll();
     }
 
+    @RequestMapping(value = "update", method = RequestMethod.POST)
+    public AccountResponse updateAccount(@RequestBody Account account) throws AccountException {
+        LOGGER.debug("Update account:\n" + JsonMarshaller.marshal(account));
+        storage.update(account);
+        AccountResponse response = AccountResponse.getSuccessfulInstance();
+        LOGGER.debug("Response:\n" + JsonMarshaller.marshal(response));
+        return response;
+    }
 
     @ExceptionHandler(value = HttpMessageConversionException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -59,4 +67,3 @@ public class AccountController {
         return response;
     }
 }
-

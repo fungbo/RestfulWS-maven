@@ -15,6 +15,6 @@ public class Matchers {
 
     static boolean isAccountMatch(Account actualAccount, Account expectedAccount) {
         return expectedAccount.getMsisdn().equals(actualAccount.getMsisdn())
-                && Double.compare(expectedAccount.getBalance(), actualAccount.getBalance()) == 0;
+                && expectedAccount.getBalance().compareTo(actualAccount.getBalance()) == 0;
     }
 }

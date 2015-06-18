@@ -35,9 +35,9 @@ public class Account {
 
     private Type type;
     private String msisdn;
-    private double balance;
+    private Double balance;
 
-    public Account(Type type, String msisdn, double balance) {
+    public Account(Type type, String msisdn, Double balance) {
         this.type = type;
         this.msisdn = msisdn;
         this.balance = balance;
@@ -69,17 +69,18 @@ public class Account {
         this.msisdn = msisdn;
     }
 
-    public double getBalance() {
+    public Double getBalance() {
         return balance;
     }
 
-    public void setBalance(double balance) {
+    public void setBalance(Double balance) {
         this.balance = balance;
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Account:{");
+        sb.append("type:").append(type).append(",");
         sb.append("msisdn:").append(msisdn).append(",");
         sb.append("balance:").append(balance).append("}");
         return sb.toString();

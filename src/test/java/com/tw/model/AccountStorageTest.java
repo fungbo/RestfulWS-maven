@@ -46,6 +46,18 @@ public class AccountStorageTest {
         assertThat(actualAccounts, isAccount(expectedAccounts));
     }
 
+    @Test
+    public void should_update_account() throws AccountException {
+        storage.add(mike);
+        storage.add(jack);
+        Account account = new Account();
+        account.setMsisdn(mike.getMsisdn());
+        account.setBalance(8.0);
+        storage.update(account);
+
+        assertThat(storage.get(mike.getMsisdn()), isAccount(new Account(Account.Type.PRPD, "62001", 8.0)));
+    }
+
     @Test(expected = AccountException.class)
     public void should_throw_exception_when_add_existing_account() throws AccountException {
         storage.add(mike);
