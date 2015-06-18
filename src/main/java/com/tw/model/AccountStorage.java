@@ -27,28 +27,31 @@ public class AccountStorage {
         return storage.get(msisdn);
     }
 
-    public Account update(Account account) throws AccountException {
-        Account updatingAccount = get(account.getMsisdn());
+    public Collection<Account> getAll() {
+        return storage.values();
+    }
+
+    public Account update(Account newAccount) throws AccountException {
+        return updateObject(get(newAccount.getMsisdn()), newAccount);
+    }
+
+    private boolean isAccountExisting(String msisdn) {
+        return storage.get(msisdn) != null;
+    }
+
+    private <T> T updateObject(T oldObj, T newObj) {
         Field[] fields = Account.class.getDeclaredFields();
         try {
             for (Field field : fields) {
                 if (field.getType() != UUID.class) {
                     field.setAccessible(true);
-                    field.set(updatingAccount, getUpdatedField(field.get(updatingAccount), field.get(account)));
+                    field.set(oldObj, getUpdatedField(field.get(oldObj), field.get(newObj)));
                 }
             }
         } catch (IllegalAccessException e) {
             throw new RuntimeException("Update account error");
         }
-        return updatingAccount;
-    }
-
-    public Collection<Account> getAll() {
-        return storage.values();
-    }
-
-    private boolean isAccountExisting(String msisdn) {
-        return storage.get(msisdn) != null;
+        return oldObj;
     }
 
     private <T> T getUpdatedField(T oldItem, T newItem) {
