@@ -39,7 +39,7 @@ public class AccountStorage {
         return storage.get(msisdn) != null;
     }
 
-    private <T> T updateObject(T oldObj, T newObj) {
+    private <T> T updateObject(T oldObj, T newObj) throws AccountException {
         Field[] fields = Account.class.getDeclaredFields();
         try {
             for (Field field : fields) {
@@ -49,7 +49,7 @@ public class AccountStorage {
                 }
             }
         } catch (IllegalAccessException e) {
-            throw new RuntimeException("Update account error");
+            throw new AccountException(Constants.UPDATE_ACCOUNT_ERROR, "Update account error");
         }
         return oldObj;
     }
