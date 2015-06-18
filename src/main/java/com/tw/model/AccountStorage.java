@@ -4,6 +4,7 @@ import com.tw.Exception.AccountException;
 import com.tw.common.Constants;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.HashMap;
 
 @Service
@@ -22,6 +23,10 @@ public class AccountStorage {
             throw new AccountException(Constants.MSISDN_NOT_EXISTING, "Account you got is not existing");
         }
         return storage.get(msisdn);
+    }
+
+    public Collection<Account> getAll() {
+        return storage.values();
     }
 
     private boolean isAccountExisting(String msisdn) {

@@ -4,7 +4,11 @@ import com.tw.Exception.AccountException;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.tw.common.AccountMatcher.isAccount;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static com.tw.common.Matchers.isAccount;
 import static org.junit.Assert.assertThat;
 
 public class AccountStorageTest {
@@ -15,8 +19,8 @@ public class AccountStorageTest {
     @Before
     public void setUp() {
         storage = new AccountStorage();
-        mike = new Account("62001", 68.4);
-        jack = new Account("62002", 0.07);
+        mike = new Account(Account.Type.PRPD, "62001", 68.4);
+        jack = new Account(Account.Type.POPD, "62002", 0.07);
     }
 
     @Test
@@ -25,7 +29,21 @@ public class AccountStorageTest {
         storage.add(jack);
         Account account = storage.get(jack.getMsisdn());
 
-        assertThat(account, isAccount(new Account("62002", 0.07)));
+        assertThat(account, isAccount(new Account(Account.Type.PRPD, "62002", 0.07)));
+    }
+
+    @Test
+    public void should_get_all_accounts() throws AccountException {
+        storage.add(mike);
+        storage.add(jack);
+        Account[] accounts = storage.getAll().toArray(new Account[storage.getAll().size()]);
+        List<Account> actualAccounts = Arrays.asList(accounts);
+
+        ArrayList<Account> expectedAccounts = new ArrayList<Account>();
+        expectedAccounts.add(mike);
+        expectedAccounts.add(jack);
+
+        assertThat(actualAccounts, isAccount(expectedAccounts));
     }
 
     @Test(expected = AccountException.class)

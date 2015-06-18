@@ -28,25 +28,23 @@ public class Account {
         public String getName() {
             return name;
         }
+
     }
 
     private UUID uuid = UUID.randomUUID();
+
     private Type type;
     private String msisdn;
     private double balance;
 
-    public Account(String msisdn, double balance) {
+    public Account(Type type, String msisdn, double balance) {
+        this.type = type;
         this.msisdn = msisdn;
         this.balance = balance;
     }
 
     public Account() {
 
-    }
-
-    @JsonIgnore
-    public String getUuidString() {
-        return uuid.toString();
     }
 
     public Type getType() {
@@ -56,6 +54,12 @@ public class Account {
     public void setType(Type type) {
         this.type = type;
     }
+
+    @JsonIgnore
+    public String getUuidString() {
+        return uuid.toString();
+    }
+
 
     public String getMsisdn() {
         return msisdn;

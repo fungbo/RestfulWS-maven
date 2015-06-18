@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageConversionException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
+
 @RestController
 @RequestMapping("/account")
 public class AccountController {
@@ -27,6 +29,19 @@ public class AccountController {
         LOGGER.debug("[" + account.getUuidString() + "] Response:\n" + JsonMarshaller.marshal(response));
         return response;
     }
+
+    @RequestMapping(value = "get/{msisdn}", method = RequestMethod.GET)
+    public Account getAccount(@PathVariable("msisdn") String msisdn) throws AccountException {
+        LOGGER.debug("Get account msisdn: " + msisdn);
+        return storage.get(msisdn);
+    }
+
+    @RequestMapping(value = "get-all", method = RequestMethod.GET)
+    public Collection<Account> getAllAccount() {
+        LOGGER.debug("Get all accounts");
+        return storage.getAll();
+    }
+
 
     @ExceptionHandler(value = HttpMessageConversionException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
