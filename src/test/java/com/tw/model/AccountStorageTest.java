@@ -3,6 +3,8 @@ package com.tw.model;
 import com.tw.Exception.AccountException;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,10 +15,24 @@ import static com.tw.common.Matchers.isAccount;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+@RunWith(Parameterized.class)
 public class AccountStorageTest {
     private AccountStorage storage;
     private Account mike;
     private Account jack;
+
+    @Parameterized.Parameter
+    public String actualMsisdn;
+    @Parameterized.Parameter(value = 1)
+    public Account expectedAccount;
+
+    @Parameterized.Parameters(name = "{index}: expected msisdn: <{0}>")
+    public static Collection<Object[]> data() {
+        return Arrays.asList(new Object[][]{
+                {"62001", new Account(Account.Type.PRPD, "62001", 68.4)},
+                {"62002", new Account(Account.Type.POPD, "62002", 0.07)}
+        });
+    }
 
     @Before
     public void setUp() {
@@ -29,9 +45,8 @@ public class AccountStorageTest {
     public void should_be_able_to_add_and_get_account() throws AccountException {
         storage.add(mike);
         storage.add(jack);
-        Account account = storage.get(jack.getMsisdn());
 
-        assertThat(account, isAccount(new Account(Account.Type.PRPD, "62002", 0.07)));
+        assertThat(storage.get(actualMsisdn), isAccount(expectedAccount));
     }
 
     @Test
