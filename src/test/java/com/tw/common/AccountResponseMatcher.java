@@ -5,7 +5,6 @@ import org.hamcrest.Description;
 import org.hamcrest.TypeSafeMatcher;
 
 public class AccountResponseMatcher extends TypeSafeMatcher<AccountResponse> {
-
     private AccountResponse expectedResponse;
 
     public AccountResponseMatcher(AccountResponse expectedResponse) {

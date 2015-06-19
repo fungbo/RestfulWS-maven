@@ -5,7 +5,6 @@ import org.hamcrest.Description;
 import org.hamcrest.TypeSafeMatcher;
 
 public class AccountMatcher extends TypeSafeMatcher<Account> {
-
     private Account expectedAccount;
 
     public AccountMatcher(Account expectedAccount) {
