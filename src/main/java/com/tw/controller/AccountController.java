@@ -2,10 +2,12 @@ package com.tw.controller;
 
 import com.tw.Exception.AccountException;
 import com.tw.common.Constants;
-import com.tw.common.JsonMarshaller;
+import com.tw.common.JsonUtils;
 import com.tw.model.Account;
 import com.tw.model.AccountResponse;
-import com.tw.model.AccountStorage;
+import com.tw.model.HttpInfo;
+import com.tw.service.AccountStorage;
+import com.tw.service.HttpServcie;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,13 +22,15 @@ public class AccountController {
     private static Logger LOGGER = Logger.getLogger(AccountController.class);
     @Autowired
     private AccountStorage storage;
+    @Autowired
+    private HttpServcie httpService;
 
     @RequestMapping(value = "/add", method = RequestMethod.PUT)
     public AccountResponse addAccount(@RequestBody Account account) throws AccountException {
-        LOGGER.debug("[" + account.getUuidString() + "] Add account:\n" + JsonMarshaller.marshal(account));
+        LOGGER.debug("[" + account.getUuidString() + "] Add account:\n" + JsonUtils.marshal(account));
         storage.add(account);
         AccountResponse response = AccountResponse.getSuccessfulInstance();
-        LOGGER.debug("[" + account.getUuidString() + "] Response:\n" + JsonMarshaller.marshal(response));
+        LOGGER.debug("[" + account.getUuidString() + "] Response:\n" + JsonUtils.marshal(response));
         return response;
     }
 
@@ -44,10 +48,10 @@ public class AccountController {
 
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public AccountResponse updateAccount(@RequestBody Account account) throws AccountException {
-        LOGGER.debug("Update account:\n" + JsonMarshaller.marshal(account));
+        LOGGER.debug("Update account:\n" + JsonUtils.marshal(account));
         storage.update(account);
         AccountResponse response = AccountResponse.getSuccessfulInstance();
-        LOGGER.debug("Response:\n" + JsonMarshaller.marshal(response));
+        LOGGER.debug("Response:\n" + JsonUtils.marshal(response));
         return response;
     }
 
@@ -58,11 +62,17 @@ public class AccountController {
         return AccountResponse.getSuccessfulInstance();
     }
 
+    @RequestMapping(value = "httpbin", method = RequestMethod.GET)
+    public HttpInfo getHttpInfo() throws AccountException {
+        HttpInfo httpInfo = httpService.getHttpInfo();
+        return httpInfo;
+    }
+
     @ExceptionHandler(value = HttpMessageConversionException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public AccountResponse handleUnmarshalException(HttpMessageConversionException e) {
         AccountResponse response = AccountResponse.getFailInstance(Constants.WRONG_FORMAT, e.getCause().getMessage());
-        LOGGER.error("Response:\n" + JsonMarshaller.marshal(response));
+        LOGGER.error("Response:\n" + JsonUtils.marshal(response));
         return response;
     }
 
@@ -70,7 +80,7 @@ public class AccountController {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public AccountResponse handleAccountException(AccountException e) {
         AccountResponse response = AccountResponse.getFailInstance(e.getCode(), e.getMessage());
-        LOGGER.error("Response:\n" + JsonMarshaller.marshal(response));
+        LOGGER.error("Response:\n" + JsonUtils.marshal(response));
         return response;
     }
 }

@@ -13,4 +13,5 @@
 >11.Spring test - AccountControllerTest, test-spring.xml
 >12.Java junit parameterized - AccountStorageTest
 >13.Java UUID - Account, AccountController
->14.Java Enum - Account
+>14.Java enum - Account
+>15.HttpURLConnection - HttpService

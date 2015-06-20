@@ -4,7 +4,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
-public class JsonMarshaller {
+import java.io.IOException;
+import java.io.InputStream;
+
+public class JsonUtils {
     private static ObjectMapper mapper;
 
     static {
@@ -18,5 +21,9 @@ public class JsonMarshaller {
         } catch (JsonProcessingException e) {
             return "marshal error";
         }
+    }
+
+    public static <T> T unmarshal(InputStream inputStream, Class<T> clazz) throws IOException {
+        return mapper.readValue(inputStream, clazz);
     }
 }
