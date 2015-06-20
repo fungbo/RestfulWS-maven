@@ -1,12 +1,12 @@
 {
-  "args": {},
-  "headers": {
-    "Accept": "application/json",
-    "Cache-Control": "no-cache",
-    "Content-Type": "application/json",
-    "Host": "www.httpbin.org",
-    "Pragma": "no-cache",
-    "User-Agent": "Java/1.8.0_25"
+  "args" : { },
+  "headers" : {
+    "Accept" : "application/json",
+    "Cache-Control" : "no-cache",
+    "Content-Type" : "application/json",
+    "Host" : "www.httpbin.org",
+    "Pragma" : "no-cache",
+    "User-Agent" : "Java/1.8.0_25"
   },
-  "url": "http://www.httpbin.org/get"
+  "url" : "http://www.httpbin.org/get"
 }

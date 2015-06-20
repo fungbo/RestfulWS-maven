@@ -8,7 +8,7 @@
 >6.Log4j - log.xml, log.properties, Log4jInitialiser
 >7.Java properties - Configuration
 >8.Markdown - README.md
->9.Java generics - AccountStorage
+>9.Java generics - AccountStorage, JsonUtils
 >10.Java reflection - AccountStorage
 >11.Spring test - AccountControllerTest, test-spring.xml
 >12.Java junit parameterized - AccountStorageTest
