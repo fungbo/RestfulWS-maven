@@ -3,9 +3,7 @@ package com.tw.controller;
 import com.tw.Exception.AccountException;
 import com.tw.common.Constants;
 import com.tw.common.JsonUtils;
-import com.tw.model.Account;
-import com.tw.model.AccountResponse;
-import com.tw.model.HttpInfo;
+import com.tw.model.*;
 import com.tw.service.AccountStorage;
 import com.tw.service.HttpServcie;
 import org.apache.log4j.Logger;
@@ -14,7 +12,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageConversionException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @RestController
 @RequestMapping("/account")
@@ -66,6 +66,26 @@ public class AccountController {
     public HttpInfo getHttpInfo() throws AccountException {
         HttpInfo httpInfo = httpService.getHttpInfo();
         return httpInfo;
+    }
+
+    @RequestMapping(value = "get-customer", method = RequestMethod.GET)
+    public Customer getMtsms() {
+        List<Object> customer = new ArrayList<Object>();
+        Address address = new Address();
+        address.setCity("xian");
+        address.setStreet("jinye");
+        PhoneNumber phoneNumber = new PhoneNumber();
+        phoneNumber.setNumber("001");
+        phoneNumber.setType("prpd");
+
+        customer.add(address);
+        customer.add(phoneNumber);
+        customer.add("rick@gmail.com");
+
+        Customer mtsmsData = new Customer();
+        mtsmsData.setCustomerInfo(customer);
+
+        return mtsmsData;
     }
 
     @ExceptionHandler(value = HttpMessageConversionException.class)
