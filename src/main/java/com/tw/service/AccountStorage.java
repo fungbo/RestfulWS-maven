@@ -50,7 +50,7 @@ public class AccountStorage {
         return storage.get(msisdn) != null;
     }
 
-    private <T> T updateObject(T oldObj, T newObj) throws AccountException {
+    private Account updateObject(Account oldObj, Account newObj) throws AccountException {
         Field[] fields = Account.class.getDeclaredFields();
         try {
             for (Field field : fields) {
