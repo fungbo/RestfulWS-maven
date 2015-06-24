@@ -16,7 +16,6 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 public class JAXBMarshallerTest {
-
     private JAXBMarshaller<Customer> marshaller;
     private Customer customer;
 
