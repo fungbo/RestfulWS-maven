@@ -15,4 +15,6 @@
 >13.Java UUID - Account, AccountController    
 >14.Java enum - Account   
 >15.HttpURLConnection - HttpService   
->16.JAXB - JAXBMarshaller, JAXBUnmarshaller, Customer
+>16.JAXB - JAXBMarshaller, JAXBUnmarshaller, Customer   
+>17.JAXB Xmlns - package-info.java   
+>18.JAXB CDATA - JAXBMarshaller

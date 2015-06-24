@@ -89,7 +89,7 @@ public class AccountControllerTest {
         assertThat(response, isAccountResponse(AccountResponse.getSuccessfulInstance()));
     }
 
-    @Test
+    @Test(timeout = 5000)
     public void should_get_httpbin() throws AccountException, IOException {
         String expectedInfo = IOUtils.toString(Thread.currentThread().getContextClassLoader().getResourceAsStream("http-info-test.json"));
         HttpInfo httpInfo = controller.getHttpInfo();
