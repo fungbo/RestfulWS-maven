@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <MtsmsData xmlns="http://www.thoughtworks.com/customer" xmlns:baidu="http://www.baidu.com">
     <address>
-        <city>Xi'an</city>
         <street>Jinye Road</street>
+        <city>Xi'an</city>
     </address>
     <phone-number type="PRPD">62001</phone-number>
     <email>mike@gmail.com</email>

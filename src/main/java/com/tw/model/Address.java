@@ -1,8 +1,10 @@
 package com.tw.model;
 
+import javax.xml.bind.annotation.XmlType;
+
+@XmlType(name = "", propOrder = {"street", "city"})
 public class Address {
     private String street;
-
     private String city;
 
     public String getStreet() {
