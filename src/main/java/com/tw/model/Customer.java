@@ -3,6 +3,10 @@ package com.tw.model;
 import javax.xml.bind.annotation.*;
 import java.util.List;
 
+/**
+   This is not a best practice. Just an example to show us how to use @XmlElements
+ */
+
 @XmlRootElement(name = "MtsmsData")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Customer {
