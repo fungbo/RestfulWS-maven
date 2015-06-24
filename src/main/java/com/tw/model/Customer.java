@@ -8,6 +8,7 @@ import java.util.List;
  */
 
 @XmlRootElement(name = "MtsmsData")
+//@XmlRootElement(name = "MtsmsData", namespace="http://www.thoughtworks.com"))
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Customer {
     @XmlElements({@XmlElement(name = "address", type = Address.class),

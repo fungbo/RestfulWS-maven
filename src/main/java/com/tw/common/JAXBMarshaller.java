@@ -22,5 +22,6 @@ public class JAXBMarshaller<T> {
         JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
         marshaller = jaxbContext.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+//        marshaller.setProperty("com.sun.xml.internal.bind.namespacePrefixMapper", new CustomerNamespaceMapper());
     }
 }

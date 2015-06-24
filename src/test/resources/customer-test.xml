@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<MtsmsData>
+<MtsmsData xmlns="http://www.thoughtworks.com/customer" xmlns:baidu="http://www.baidu.com">
     <address>
         <city>Xi'an</city>
         <street>Jinye Road</street>
