@@ -9,7 +9,6 @@ import javax.xml.bind.annotation.XmlValue;
 public class PhoneNumber {
     @XmlAttribute
     private String type;
-
     @XmlValue
     private String number;
 

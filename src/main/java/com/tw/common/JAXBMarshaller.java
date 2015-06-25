@@ -6,6 +6,7 @@ import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.PropertyException;
 import java.io.StringWriter;
 
 public class JAXBMarshaller<T> {
@@ -19,6 +20,10 @@ public class JAXBMarshaller<T> {
         StringWriter writer = new StringWriter();
         marshaller.marshal(object, getXmlSerializer(writer));
         return writer.toString();
+    }
+
+    public void setProperty(String name, String value) throws PropertyException {
+        marshaller.setProperty(name, value);
     }
 
     private XMLSerializer getXmlSerializer(StringWriter writer) {
