@@ -1,10 +1,9 @@
 package com.tw.jaxb;
 
-import com.tw.common.JAXBMarshaller;
+import com.tw.common.Marshaller;
 import org.junit.Test;
 
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
 
 public class BeansTest {
     @Test
@@ -16,8 +15,8 @@ public class BeansTest {
         beans.setComponentScan(componentScan);
         beans.setAnnotationDriven("");
 
-        JAXBMarshaller<Beans> marshaller =JAXBMarshaller.getInstance(Beans.class);
-        marshaller.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, "http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd "
+        Marshaller<Beans> marshaller = Marshaller.getInstance(Beans.class);
+        marshaller.setProperty(javax.xml.bind.Marshaller.JAXB_SCHEMA_LOCATION, "http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd "
                 + "http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd "
                 + "http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd");
 

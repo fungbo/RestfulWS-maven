@@ -14,15 +14,15 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class JAXBUnmarshallerTest {
+public class UnmarshallerTest {
     private InputStream inputStream;
-    private JAXBUnmarshaller<Customer> unmarshaller;
+    private Unmarshaller<Customer> unmarshaller;
     private Customer expectedCustomer;
 
     @Before
     public void setUp() throws JAXBException {
         inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("customer-test.xml");
-        unmarshaller = JAXBUnmarshaller.getInstance(Customer.class);
+        unmarshaller = Unmarshaller.getInstance(Customer.class);
 
         Address address = new Address();
         address.setStreet("Jinye Road");

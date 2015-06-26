@@ -15,13 +15,13 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class JAXBMarshallerTest {
-    private JAXBMarshaller<Customer> marshaller;
+public class MarshallerTest {
+    private Marshaller<Customer> marshaller;
     private Customer customer;
 
     @Before
     public void setUp() throws JAXBException {
-        marshaller = JAXBMarshaller.getInstance(Customer.class);
+        marshaller = Marshaller.getInstance(Customer.class);
 
         Address address = new Address();
         address.setStreet("Jinye Road");

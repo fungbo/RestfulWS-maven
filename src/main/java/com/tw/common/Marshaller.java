@@ -5,15 +5,14 @@ import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
 import javax.xml.bind.PropertyException;
 import java.io.StringWriter;
 
-public class JAXBMarshaller<T> {
-    private Marshaller marshaller;
+public class Marshaller<T> {
+    private javax.xml.bind.Marshaller marshaller;
 
-    public static <W> JAXBMarshaller getInstance(Class<W> clazz) throws JAXBException {
-        return new JAXBMarshaller(clazz);
+    public static <W> Marshaller getInstance(Class<W> clazz) throws JAXBException {
+        return new Marshaller(clazz);
     }
 
     public String marshal(T object) throws JAXBException {
@@ -34,11 +33,11 @@ public class JAXBMarshaller<T> {
         return new XMLSerializer(writer, outputFormat);
     }
 
-    private JAXBMarshaller(Class<T> clazz) throws JAXBException {
+    private Marshaller(Class<T> clazz) throws JAXBException {
         JAXBContext jaxbContext = JAXBContext.newInstance(clazz);
         marshaller = jaxbContext.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-        marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
+        marshaller.setProperty(javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        marshaller.setProperty(javax.xml.bind.Marshaller.JAXB_ENCODING, "UTF-8");
 //        marshaller.setProperty("com.sun.xml.internal.bind.namespacePrefixMapper", new CustomerNamespaceMapper());
     }
 }
