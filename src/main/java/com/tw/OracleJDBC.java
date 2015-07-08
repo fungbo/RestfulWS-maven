@@ -21,8 +21,6 @@ public class OracleJDBC {
             if (connection != null) {
                 System.out.println("success");
             }
-
-
         } catch (Exception e) {
             System.out.println("connection error");
         }
