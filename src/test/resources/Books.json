@@ -1,0 +1,23 @@
+{
+  "books": [
+    {
+      "name": "java",
+      "price": 50,
+      "discount": 0.8
+    },
+    {
+      "name": "ruby",
+      "price": 30,
+      "discount": 0.95
+    },
+    {
+      "name": "C++",
+      "price": 54.3,
+      "discount": 0.88
+    },
+    {
+      "name": "Perl",
+      "price": 72.3
+    }
+  ]
+}

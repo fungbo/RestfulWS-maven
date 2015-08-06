@@ -46,6 +46,12 @@ public class AccountController {
         return storage.getAll();
     }
 
+    @RequestMapping(method = RequestMethod.GET)
+    public Account getAccountByMsisdn(@RequestParam String msisdn, @RequestParam(required = false) Account.Type type) throws AccountException {
+        LOGGER.debug("Get account by http get param");
+        return storage.get(msisdn);
+    }
+
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public AccountResponse updateAccount(@RequestBody Account account) throws AccountException {
         LOGGER.debug("Update account:\n" + JsonUtils.marshal(account));
